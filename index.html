@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Presupuestos</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-container no-print">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="logo-area">
+          <span class="logo-dot"></span>
+          <h1>Creador de Presupuestos</h1>
+        </div>
+        <p class="subtitle">
+          Complete los campos de la izquierda para diseñar su presupuesto en
+          tiempo real
+        </p>
+      </header>
+
+      <!-- Main Workspace -->
+      <main class="workspace">
+        <!-- Left Panel: Form -->
+        <section class="form-panel">
+          <div class="panel-card">
+            <h2 class="panel-title">Datos del Presupuesto</h2>
+            <form id="budget-form" onsubmit="event.preventDefault()">
+              <div class="form-group">
+                <label for="input-client">Cliente</label>
+                <input
+                  type="text"
+                  id="input-client"
+                  placeholder="Nombre del cliente o empresa"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="input-title">Título del Presupuesto</label>
+                <input
+                  type="text"
+                  id="input-title"
+                  placeholder="Ej: Aire Acondicionado ubicado en comedor."
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="input-comment">Comentario</label>
+                <textarea
+                  id="input-comment"
+                  rows="3"
+                  placeholder="Comentario sobre la visita"
+                ></textarea>
+              </div>
+
+              <!-- Dynamic Jobs List -->
+              <div class="form-group">
+                <div class="label-header">
+                  <label>Trabajos a Realizar</label>
+                  <button
+                    type="button"
+                    id="btn-add-job"
+                    class="btn-secondary-sm"
+                  >
+                    + Agregar Trabajo
+                  </button>
+                </div>
+                <div id="jobs-container" class="jobs-list">
+                  <!-- Dynamic job inputs will be loaded here by JavaScript -->
+                </div>
+              </div>
+
+              <div class="form-row-three">
+                <div class="form-group">
+                  <label for="input-value">Valor sin IVA</label>
+                  <input
+                    type="text"
+                    id="input-value"
+                    placeholder="Monto"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="select-iva">IVA</label>
+                  <select id="select-iva">
+                    <option value="22">22%</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="select-currency">Moneda</label>
+                  <select id="select-currency">
+                    <option value="$U">$U</option>
+                    <option value="U$S">U$S</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="button" id="btn-generate-pdf" class="btn-primary">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Descargar PDF / Imprimir
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Right Panel: Live Preview -->
+        <section class="preview-panel">
+          <div class="preview-actions">
+            <span class="preview-badge">Vista Previa A4</span>
+          </div>
+
+          <!-- The Page to be printed -->
+          <div id="print-sheet" class="a4-sheet">
+            <div class="sheet-content">
+              <!-- Header Section inside PDF -->
+              <div class="pdf-header">
+                <div class="company-logo">
+                  <img
+                    src="assets/img/image.png"
+                    alt="REFRIFULL Logo"
+                    class="logo-img"
+                  />
+                </div>
+                <div class="company-info">
+                  <div class="company-name">Martin Stelmaschuc</div>
+                  <div class="company-phone">099 331 903</div>
+                  <div class="company-email">refrifull@hotmail.com</div>
+                  <div class="company-location">
+                    Montevideo, <span id="pdf-date">--/--/----</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Client Section -->
+              <div class="client-section">
+                <div id="pdf-client" class="client-name"></div>
+              </div>
+
+              <!-- Intro Text -->
+              <div class="intro-text">
+                Tenemos el agrado de saludarles y hacerles llegar la cotización
+                solicitada asociada a <span id="pdf-title"></span>.
+              </div>
+
+              <!-- Comment Section -->
+              <div class="comment-section">
+                Tras realizar la visita se constató lo siguiente:
+              </div>
+              <div id="pdf-comment-container" class="comment-box">
+                <span id="pdf-comment"></span>
+              </div>
+
+              <!-- Jobs List Intro -->
+              <div class="jobs-intro">
+                A continuación se detallarán los pasos a seguir para su
+                reparación:
+              </div>
+
+              <!-- Jobs Section -->
+              <ul id="pdf-jobs-list" class="pdf-jobs-list">
+                <!-- Dynamically updated by app.js -->
+              </ul>
+
+              <!-- Cost Section -->
+              <div class="cost-section">
+                <span class="cost-label">Costo de dicha reparación</span>
+                <span class="cost-dots"></span>
+                <span class="cost-amount"
+                  ><span id="pdf-currency">$U</span>
+                  <span id="pdf-value-base"></span> + IVA</span
+                >
+              </div>
+              <div class="iva-section"><span id="pdf-iva-rate">22</span> %</div>
+
+              <!-- Closing Text -->
+              <div class="closing-text">
+                Sin otro particular, me despido quedando a la orden. Saluda
+                atte,
+              </div>
+
+              <!-- Signature Section -->
+              <div class="signature-section">
+                <img
+                  src="assets/img/firma.png"
+                  alt="Firma"
+                  class="signature-img"
+                />
+              </div>
+
+              <!-- Footer -->
+              <div class="pdf-footer">
+                <div class="footer-col footer-left">RUT 219092490011</div>
+                <div class="footer-col footer-center">Cel. +598 99 331 903</div>
+                <div class="footer-col footer-right">
+                  E-Mail: refrifull@hotmail.com
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
