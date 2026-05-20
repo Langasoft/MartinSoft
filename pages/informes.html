@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generador de Presupuestos</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="app.js" defer></script>
+    <title>Generador de Informes</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../assets/js/informes.js" defer></script>
   </head>
   <body>
     <div class="app-container no-print">
@@ -13,13 +13,13 @@
       <header class="app-header">
         <div class="logo-area">
           <span class="logo-dot"></span>
-          <h1>Creador de Presupuestos</h1>
+          <h1>Creador de Informes</h1>
         </div>
         <p class="subtitle">
-          Complete los campos de la izquierda para diseñar su presupuesto en
-          tiempo real
+          Complete los campos de la izquierda para diseñar su informe en tiempo
+          real
         </p>
-        <a href="index.html" class="back-link">← Volver al menú principal</a>
+        <a href="../index.html" class="back-link">← Volver al menú principal</a>
       </header>
 
       <!-- Main Workspace -->
@@ -27,8 +27,8 @@
         <!-- Left Panel: Form -->
         <section class="form-panel">
           <div class="panel-card">
-            <h2 class="panel-title">Datos del Presupuesto</h2>
-            <form id="budget-form" onsubmit="event.preventDefault()">
+            <h2 class="panel-title">Datos del Informe</h2>
+            <form id="report-form" onsubmit="event.preventDefault()">
               <div class="form-group">
                 <label for="input-client">Cliente</label>
                 <input
@@ -40,52 +40,71 @@
               </div>
 
               <div class="form-group">
-                <label for="input-title">Título del Presupuesto</label>
+                <label for="input-motivo">Motivo del Informe</label>
                 <input
                   type="text"
-                  id="input-title"
-                  placeholder="Ej: Aire Acondicionado ubicado en comedor."
+                  id="input-motivo"
+                  placeholder="Ej: Revisión de Aire Acondicionado"
                   required
                 />
               </div>
 
               <div class="form-group">
-                <label for="input-comment">Comentario</label>
+                <label for="input-descripcion">Descripción de Tarea</label>
+                <input
+                  type="text"
+                  id="input-descripcion"
+                  placeholder="Descripción de la tarea que derivó en informe"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="input-comentario">Comentario del Informe</label>
                 <textarea
-                  id="input-comment"
+                  id="input-comentario"
                   rows="3"
-                  placeholder="Comentario sobre la visita"
+                  placeholder="Comentario sobre el informe"
                 ></textarea>
               </div>
 
-              <!-- Dynamic Jobs List -->
+              <div class="form-group">
+                <label for="input-acciones">Acciones Tomadas</label>
+                <textarea
+                  id="input-acciones"
+                  rows="3"
+                  placeholder="Acciones que se tomaron"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="input-que-cotiza">Qué se Cotiza</label>
+                <input
+                  type="text"
+                  id="input-que-cotiza"
+                  placeholder="Qué se está cotizando"
+                  required
+                />
+              </div>
+
+              <!-- Dynamic Items List -->
               <div class="form-group">
                 <div class="label-header">
-                  <label>Trabajos a Realizar</label>
+                  <label>Items</label>
                   <button
                     type="button"
-                    id="btn-add-job"
+                    id="btn-add-item"
                     class="btn-secondary-sm"
                   >
-                    + Agregar Trabajo
+                    + Agregar Item
                   </button>
                 </div>
-                <div id="jobs-container" class="jobs-list">
-                  <!-- Dynamic job inputs will be loaded here by JavaScript -->
+                <div id="items-container" class="jobs-list">
+                  <!-- Dynamic item inputs will be loaded here by JavaScript -->
                 </div>
               </div>
 
               <div class="form-row-three">
-                <div class="form-group">
-                  <label for="input-value">Valor sin IVA</label>
-                  <input
-                    type="text"
-                    id="input-value"
-                    placeholder="Monto"
-                    required
-                  />
-                </div>
-
                 <div class="form-group">
                   <label for="select-iva">IVA</label>
                   <select id="select-iva">
@@ -136,7 +155,7 @@
               <div class="pdf-header">
                 <div class="company-logo">
                   <img
-                    src="assets/img/image.png"
+                    src="../assets/img/image.png"
                     alt="REFRIFULL Logo"
                     class="logo-img"
                   />
@@ -158,39 +177,46 @@
 
               <!-- Intro Text -->
               <div class="intro-text">
-                Tenemos el agrado de saludarles y hacerles llegar la cotización
-                solicitada asociada a <span id="pdf-title"></span>.
+                Tenemos el agrado de saludarles y hacerles llegar el siguiente
+                informe asociado a <span id="pdf-motivo"></span>.
               </div>
 
-              <!-- Comment Section -->
+              <!-- Description Section -->
               <div class="comment-section">
-                Tras realizar la visita se constató lo siguiente:
-              </div>
-              <div id="pdf-comment-container" class="comment-box">
-                <span id="pdf-comment"></span>
+                <span id="pdf-descripcion"></span> se constató lo siguiente:
               </div>
 
-              <!-- Jobs List Intro -->
+              <!-- Report Comment Section -->
+              <div id="pdf-comentario-container" class="comment-box">
+                <span id="pdf-comentario"></span>.
+              </div>
+
+              <!-- Actions Section -->
+              <div id="pdf-acciones-container" class="comment-box">
+                <span id="pdf-acciones"></span>.
+              </div>
+
+              <!-- What's Quoted Section -->
               <div class="jobs-intro">
-                A continuación se detallarán los pasos a seguir para su
-                reparación:
+                A continuación procedemos a la cotización
+                <span id="pdf-que-cotiza"></span>:
               </div>
 
-              <!-- Jobs Section -->
-              <ul id="pdf-jobs-list" class="pdf-jobs-list">
-                <!-- Dynamically updated by app.js -->
-              </ul>
+              <!-- Items Section -->
+              <div id="pdf-items-list" class="pdf-items-list">
+                <!-- Dynamically updated by informes.js -->
+              </div>
 
-              <!-- Cost Section -->
-              <div class="cost-section">
-                <span class="cost-label">Costo de dicha reparación</span>
-                <span class="cost-dots"></span>
-                <span class="cost-amount"
+              <!-- Total Section -->
+              <div class="total-section">
+                <span class="total-label">Total:</span>
+                <span class="total-dots"></span>
+                <span class="total-amount"
                   ><span id="pdf-currency">$U</span>
-                  <span id="pdf-value-base"></span> + IVA</span
+                  <span id="pdf-total-value">0</span> + IVA
+                  <span id="pdf-iva-rate">22</span>%</span
                 >
               </div>
-              <div class="iva-section"><span id="pdf-iva-rate">22</span> %</div>
 
               <!-- Closing Text -->
               <div class="closing-text">
@@ -201,7 +227,7 @@
               <!-- Signature Section -->
               <div class="signature-section">
                 <img
-                  src="assets/img/firma.png"
+                  src="../assets/img/firma.png"
                   alt="Firma"
                   class="signature-img"
                 />
