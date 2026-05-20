@@ -25,16 +25,18 @@ Esta aplicación permite crear presupuestos de forma rápida y visual, con una v
 ```
 MartinSoft/
 ├── assets/
-│   └── img/
-│       ├── image.png   # Logo de REFRIFULL
-│       └── firma.png   # Firma digital
-├── index.html          # Landing page (menú principal)
-├── presupuestos.html   # Generador de cotizaciones
-├── informes.html       # Generador de informes
-├── styles.css          # Estilos CSS (landing page y generadores)
-├── app.js              # Lógica JavaScript (interactividad de cotizaciones)
-├── informes.js         # Lógica JavaScript (interactividad de informes)
-└── .gitignore          # Archivos ignorados por Git
+│   ├── img/
+│   │   ├── image.png   # Logo de REFRIFULL
+│   │   └── firma.png   # Firma digital
+│   └── js/
+│       ├── app.js       # Lógica JavaScript (interactividad de cotizaciones)
+│       └── informes.js  # Lógica JavaScript (interactividad de informes)
+├── pages/
+│   ├── presupuestos.html # Generador de cotizaciones
+│   └── informes.html     # Generador de informes
+├── index.html           # Landing page (menú principal)
+├── styles.css           # Estilos CSS (landing page y generadores)
+└── .gitignore           # Archivos ignorados por Git
 ```
 
 ---
