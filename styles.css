@@ -1,3 +1,129 @@
+/* --- Landing Page Styles --- */
+.landing-page {
+  background: radial-gradient(circle at top left, #121829 0%, #080b11 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.landing-container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.landing-header {
+  margin-bottom: 3rem;
+}
+
+.landing-logo {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.landing-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.landing-subtitle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.1rem;
+  color: #9ca3af;
+}
+
+.landing-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.landing-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  cursor: pointer;
+}
+
+.landing-btn:hover {
+  transform: translateY(-4px);
+}
+
+.landing-btn-primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+  color: white;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+}
+
+.landing-btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4);
+}
+
+.landing-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.landing-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-icon {
+  font-size: 2rem;
+}
+
+.landing-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-item {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+/* --- Back link for presupuestos.html --- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #ffffff;
+}
+
 /* --- Global Styles & Design System --- */
 :root {
   --font-sans: Arial, Helvetica, sans-serif;
@@ -435,6 +561,60 @@ textarea {
 
 .pdf-jobs-list li {
   margin-bottom: 0.3rem;
+}
+
+/* Items List for Informes */
+.pdf-items-list {
+  margin-bottom: 2rem;
+}
+
+.pdf-item-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-item-label {
+  flex: 0 0 auto;
+}
+
+.pdf-item-dots {
+  flex: 1;
+  border-bottom: 1px dotted #000;
+  margin: 0 0.5rem;
+}
+
+.pdf-item-amount {
+  flex: 0 0 auto;
+  font-weight: normal;
+}
+
+/* Total Section for Informes */
+.total-section {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid #000;
+  padding-top: 1rem;
+}
+
+.total-label {
+  flex: 0 0 auto;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.total-dots {
+  flex: 1;
+  border-bottom: 1px dotted #000;
+  margin: 0 0.5rem;
+}
+
+.total-amount {
+  flex: 0 0 auto;
+  font-weight: bold;
+  font-size: 12pt;
 }
 
 /* Cost Section */

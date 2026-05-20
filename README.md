@@ -28,9 +28,12 @@ MartinSoft/
 │   └── img/
 │       ├── image.png   # Logo de REFRIFULL
 │       └── firma.png   # Firma digital
-├── index.html          # Estructura HTML del formulario y vista previa
-├── styles.css          # Estilos CSS (pantalla y impresión)
-├── app.js              # Lógica JavaScript (interactividad)
+├── index.html          # Landing page (menú principal)
+├── presupuestos.html   # Generador de cotizaciones
+├── informes.html       # Generador de informes
+├── styles.css          # Estilos CSS (landing page y generadores)
+├── app.js              # Lógica JavaScript (interactividad de cotizaciones)
+├── informes.js         # Lógica JavaScript (interactividad de informes)
 └── .gitignore          # Archivos ignorados por Git
 ```
 
@@ -40,7 +43,8 @@ MartinSoft/
 
 ### Opción 1: Abrir directamente (sin servidor)
 1. Navega a la carpeta del proyecto
-2. Haz doble clic en `index.html` para abrirlo en tu navegador
+2. Haz doble clic en `index.html` para abrir la landing page
+3. Haz clic en el botón "Cotizaciones" para acceder al generador de presupuestos
 
 ### Opción 2: Servidor local (recomendado)
 Usa Python o Node.js para iniciar un servidor:
@@ -75,7 +79,7 @@ Luego abre http://localhost:8000 en tu navegador.
 
 ## Formato del PDF
 
-El PDF generado tiene la siguiente estructura (igual que `ejemplo.docx`):
+El PDF generado tiene la siguiente estructura:
 
 1. **Encabezado**:
    - Logo de REFRIFULL (izquierda)
