@@ -64,7 +64,7 @@ Luego abre http://localhost:8000 en tu navegador.
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
 | Cliente | Texto | Nombre del cliente o empresa |
-| Título del Presupuesto | Texto | Descripción del trabajo (ej: Reparación de Aire Acondicionado) |
+| Título del Presupuesto | Texto | Descripción del Equipo evaluado (Ej: Aire Acondicionado ubicado en comedor.) |
 | Comentario | Área de texto | Notas sobre la visita o el trabajo |
 | Trabajos a Realizar | Lista dinámica | Cada ítem es un paso o trabajo a realizar (usa "+ Agregar Trabajo" para añadir más) |
 | Valor sin IVA | Texto | Monto base del presupuesto |
