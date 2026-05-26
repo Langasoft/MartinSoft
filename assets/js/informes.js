@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const itemAmount = document.createElement("span");
         itemAmount.className = "pdf-item-amount";
-        itemAmount.textContent = valText ? `${currency} ${valText}` : "";
+        itemAmount.textContent = valText ? `${currency} ${valText} + IVA` : "";
         
         itemDiv.appendChild(itemLabel);
         itemDiv.appendChild(itemDots);
