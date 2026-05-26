@@ -621,7 +621,7 @@ textarea {
 .cost-section {
   display: flex;
   align-items: center;
-  margin-bottom: 0.3rem;
+  margin-bottom: 2rem;
 }
 
 .cost-label {
